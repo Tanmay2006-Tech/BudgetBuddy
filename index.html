@@ -2,78 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Expense & Savings Tracker</title>
-
-  <!-- Chart.js -->
+  <title>Personal Finance Management System</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>💰 My Finance Dashboard</h2>
+<h2>💰 Personal Finance Dashboard</h2>
 
 <!-- SUMMARY -->
 <div class="summary">
-  <div class="box">
-    Total Savings
-    <b id="totalSavings">₹6,538</b>
-  </div>
-  <div class="box">
-    Total Spend
-    <b id="totalSpend">₹3,200</b>
-  </div>
-  <div class="box">
-    Balance
-    <b id="balance">₹3,338</b>
-  </div>
+  <div class="box">Total Savings <b id="savings">₹0</b></div>
+  <div class="box">Total Spend <b id="spend">₹0</b></div>
+  <div class="box">Balance <b id="balance">₹0</b></div>
+</div>
+
+<!-- FORM -->
+<h3>➕ Add Transaction</h3>
+<div class="form">
+  <input type="number" id="amount" placeholder="Enter amount">
+  
+  <select id="type">
+    <option value="deposit">Deposit</option>
+    <option value="withdraw">Withdraw</option>
+  </select>
+
+  <select id="category">
+    <option>Food</option>
+    <option>Travel</option>
+    <option>Shopping</option>
+    <option>Rent</option>
+    <option>Others</option>
+  </select>
+
+  <button onclick="addTransaction()">Submit</button>
 </div>
 
 <!-- PIE CHART -->
 <h3>📊 Expense Distribution</h3>
 <canvas id="expenseChart"></canvas>
 
-<!-- GOALS -->
-<h3>🎯 My Savings</h3>
-
-<div class="goal-card">
-  <div class="goal-icon">🏠</div>
-  <div class="goal-info">
-    <h4>Future</h4>
-    <p><span class="saved">₹4,29,750</span> / ₹50,00,000</p>
-    <div class="progress">
-      <div class="fill" style="width:9%"></div>
-    </div>
-  </div>
-  <div class="percent">9%</div>
-</div>
-
-<div class="goal-card">
-  <div class="goal-icon">🎁</div>
-  <div class="goal-info">
-    <h4>Miniso</h4>
-    <p><span class="saved">₹1,038</span> / ₹2,000</p>
-    <div class="progress">
-      <div class="fill" style="width:52%"></div>
-    </div>
-  </div>
-  <div class="percent">52%</div>
-</div>
-
-<div class="goal-card">
-  <div class="goal-icon">📷</div>
-  <div class="goal-info">
-    <h4>Camera</h4>
-    <p><span class="saved">₹5,500</span> / ₹7,000</p>
-    <div class="progress">
-      <div class="fill" style="width:79%"></div>
-    </div>
-  </div>
-  <div class="percent">79%</div>
-</div>
-
-<!-- JS -->
 <script src="script.js"></script>
 </body>
 </html>
