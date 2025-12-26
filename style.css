@@ -4,15 +4,10 @@ body {
   padding: 20px;
 }
 
-h2, h3 {
-  margin-bottom: 10px;
-}
-
-/* SUMMARY */
 .summary {
   display: flex;
   gap: 12px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .box {
@@ -24,59 +19,23 @@ h2, h3 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.box b {
-  display: block;
-  margin-top: 5px;
-  font-size: 20px;
-}
-
-/* CHART */
-canvas {
+.form {
   background: white;
   padding: 15px;
   border-radius: 15px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* GOALS */
-.goal-card {
-  display: flex;
-  align-items: center;
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  margin-top: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+input, select, button {
+  padding: 8px;
+  margin: 5px;
 }
 
-.goal-icon {
-  font-size: 35px;
-  margin-right: 15px;
-}
-
-.goal-info {
-  flex: 1;
-}
-
-.saved {
-  color: #1dbf73;
-  font-weight: bold;
-}
-
-.progress {
-  height: 6px;
-  background: #eee;
-  border-radius: 5px;
-  margin-top: 6px;
-}
-
-.fill {
-  height: 100%;
-  background: #1dbf73;
-  border-radius: 5px;
-}
-
-.percent {
-  font-weight: bold;
-  color: #1dbf73;
+button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
