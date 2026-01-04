@@ -12,29 +12,24 @@ const expenses = {
   Others: 0
 };
 
-// Update category dropdown based on type
+/* CATEGORY SWITCH */
 function updateCategories() {
   const type = document.getElementById("type").value;
-  const categorySelect = document.getElementById("category");
+  const category = document.getElementById("category");
 
-  categorySelect.innerHTML = "";
+  category.innerHTML = "";
+  const list = type === "deposit" ? depositCategories : withdrawCategories;
 
-  const categories = type === "deposit"
-    ? depositCategories
-    : withdrawCategories;
-
-  categories.forEach(cat => {
-    const option = document.createElement("option");
-    option.value = cat;
-    option.textContent = cat;
-    categorySelect.appendChild(option);
+  list.forEach(item => {
+    const opt = document.createElement("option");
+    opt.value = item;
+    opt.textContent = item;
+    category.appendChild(opt);
   });
 }
-
-// Initialize categories on load
 updateCategories();
 
-// Chart
+/* CHART */
 const chart = new Chart(document.getElementById("expenseChart"), {
   type: "doughnut",
   data: {
@@ -47,20 +42,18 @@ const chart = new Chart(document.getElementById("expenseChart"), {
     }]
   },
   options: {
-    plugins: {
-      legend: { position: "bottom" }
-    }
+    plugins: { legend: { position: "bottom" } }
   }
 });
 
-// Add transaction (FIXED)
+/* ADD TRANSACTION */
 function addTransaction() {
   const amount = Number(document.getElementById("amount").value);
   const type = document.getElementById("type").value;
   const category = document.getElementById("category").value;
 
   if (!amount || amount <= 0) {
-    alert("Enter a valid amount");
+    alert("Enter valid amount");
     return;
   }
 
@@ -71,11 +64,11 @@ function addTransaction() {
     expenses[category] += amount;
   }
 
-  updateUI();
   document.getElementById("amount").value = "";
+  updateUI();
 }
 
-// Update UI
+/* UI UPDATE */
 function updateUI() {
   document.getElementById("savings").innerText = `₹${savings}`;
   document.getElementById("spend").innerText = `₹${spend}`;
@@ -83,4 +76,35 @@ function updateUI() {
 
   chart.data.datasets[0].data = Object.values(expenses);
   chart.update();
+
+  generateInsights();
+}
+
+/* AI INSIGHTS */
+function generateInsights() {
+  const list = document.getElementById("aiInsights");
+  list.innerHTML = "";
+
+  const total = spend || 1;
+
+  for (let cat in expenses) {
+    const percent = Math.round((expenses[cat] / total) * 100);
+    if (percent > 40) {
+      addInsight(`High spending on ${cat} (${percent}%). Consider reducing it.`, "ai-warn");
+    }
+  }
+
+  if (spend > savings) {
+    addInsight("Expenses exceed savings. Try cutting non-essential costs.", "ai-warn");
+  }
+
+  const projected = Math.max(0, savings - spend) * 30;
+  addInsight(`Projected monthly savings: ₹${projected}`, "ai-info");
+}
+
+function addInsight(text, type) {
+  const li = document.createElement("li");
+  li.textContent = text;
+  li.className = type;
+  document.getElementById("aiInsights").appendChild(li);
 }
