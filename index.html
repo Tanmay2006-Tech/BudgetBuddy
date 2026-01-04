@@ -38,22 +38,17 @@
   <div class="form-grid">
     <input type="number" id="amount" placeholder="Amount ₹" />
 
-    <select id="type">
+    <select id="type" onchange="updateCategories()">
       <option value="deposit">Deposit</option>
       <option value="withdraw">Withdraw</option>
     </select>
 
-    <select id="category">
-      <option>Food</option>
-      <option>Travel</option>
-      <option>Shopping</option>
-      <option>Rent</option>
-      <option>Others</option>
-    </select>
+    <select id="category"></select>
 
     <button onclick="addTransaction()">Add</button>
   </div>
 </section>
+
 
 <section class="card">
   <h2>Expense Breakdown</h2>
